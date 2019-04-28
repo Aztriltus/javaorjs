@@ -1,0 +1,99 @@
+.App {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    font-family: 'Source Sans Pro', 'Sans Serif';
+    box-sizing: border-box;
+}
+
+.music-player-container {
+    width: 480px;
+    height: 98vh;
+    background-color: black;
+    color: white;
+}
+
+.header {
+    display: flex;
+    height: 60px;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.header .title {
+    display: inline-block;
+    font-weight: 900;
+    font-size: 2em;
+    width: 100%;
+    margin: auto 0;
+    text-align: center;
+}
+
+.header .icon {
+    position: absolute;
+    font-size: 1.5em;
+    margin: auto 20px;
+    align-self: center;
+}
+
+.song-list {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: 80%;
+}
+
+.list-item {
+    display: flex;
+    padding: 10px 20px;
+    border-width: 0.1px 0;
+    border-color: darkslategrey;
+    border-style: solid;
+}
+
+.list-item .edit {
+    margin-left: auto;
+    align-self: center;
+    color: grey;
+    font-size: 1.2em;
+}
+
+.song {
+    display: flex;
+    flex-direction: column;
+}
+
+.song > span {
+    display: inline-block;
+}
+
+.song > span:first-child {
+    font-weight: 600;
+}
+
+.song > span:last-child {
+    font-size: 0.8em;
+    margin-top: 5px;
+    color: lightgrey;
+}
+
+.now-playing {
+    box-sizing: border-box;
+    display: flex;
+    height: 96px;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #3179C6;
+    font-size: 1.2em;
+}
+
+.now-playing .song {
+    align-self: center;
+}
+
+.now-playing .play {
+    align-self: center;
+    font-size: 1.5em;
+    margin-left: auto;
+}
