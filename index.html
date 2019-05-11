@@ -1,169 +1,161 @@
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,900"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,900" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="data.js"></script>
     <title>JavaOrJs CodingXCamp</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="App">
-      <div class="music-player-container">
-        <div class="header">
-          <span class="fas fa-music icon"></span>
-          <span class="title">Music Player</span>
-        </div>
-        <div class="song-list" id="list">
-          <!-- <div class="list-item">
+        <div class="music-player-container">
+            <div class="header">
+                <span class="fas fa-music icon"></span>
+                <span class="title">Music Player</span>
+            </div>
+            <div class="song-list" id="list">
+                <!-- <div class="list-item">
             <div class="song">
               <span>Title</span>
               <span>Artist</span>
             </div>
             <span class="fa fa-edit edit"></span>
           </div> -->
+            </div>
+            <div class="now-playing">
+                <div class="song">
+                    <span id="np-song">asdaaaaaaaaaaaa</span>
+                    <span id="np-artist">asd</span>
+                </div>
+                <span onclick="sort()" class="fa fa-sort play"></span>
+            </div>
         </div>
-        <div class="now-playing">
-          <div class="song">
-            <span id="np-song">asdaaaaaaaaaaaa</span>
-            <span id="np-artist">asd</span>
-          </div>
-          <span onclick="sort()" class="fa fa-sort play"></span>
-        </div>
-      </div>
     </div>
     <script>
         // OnClick event for setting the song name and artist
         // to the always-visible NowPlaying bar at the bottom
-      function setNowPlaying(event, element) {
-        const nowSong = document.getElementById("np-song");
-        const nowArtist = document.getElementById("np-artist");
-        nowSong.innerHTML = element.getElementsByTagName('span')[0].innerHTML;
-        nowArtist.innerHTML = element.getElementsByTagName('span')[1].innerHTML;
-      }
-
-      // To be completed by Sascha
-      //
-      //
-      // Function to edit song details
-      // Prompts the user for song name and artist
-      // Replaces the clicked song's name and artist with user input
-      // It is called when user clicks on edit icon in the song list
-      function editSongDetails(event, element) {
-          console.log(event);
-          // Hint: Look at console and see how to drill all the way down
-          // to edit the correct list item's song name and artist
-          // after prompting the user for input
-      }
-
-      // Function to create song item into the #list element
-      function addSongToList(name, artist) {
-        const list = document.getElementById("list");
-
-        const listItem = document.createElement("div");
-        listItem.setAttribute("class", "list-item");
-
-        const song = document.createElement("div");
-        song.setAttribute("class", "song");
-
-        const songName = document.createElement("span");
-        const songArtist = document.createElement("span");
-        songName.innerHTML = name;
-        songArtist.innerHTML = artist;
-
-        song.appendChild(songName);
-        song.appendChild(songArtist);
-
-        const edit = document.createElement("span");
-        edit.setAttribute("class", "fa fa-edit edit");
-        edit.setAttribute("onclick", `editSongDetails(event, this)`);
-
-        listItem.appendChild(song);
-        listItem.appendChild(edit);
-        //listItem.addEventListener("click", setNowPlaying2(name, artist));
-        listItem.setAttribute("onclick", `setNowPlaying(event, this)`)
-
-        list.appendChild(listItem);
-      }
-
-      // Function to populate the #list using the above addSongToList function
-      // Uses the data from data.js which is imported in this HTML's head
-      // Access the data.js using variable "data"
-      function populateSongs() {
-        for (index in data) {
-          addSongToList(data[index].title, data[index].artist);
+        function setNowPlaying(event, element) {
+            const nowSong = document.getElementById("np-song");
+            const nowArtist = document.getElementById("np-artist");
+            nowSong.innerHTML = element.getElementsByTagName('span')[0].innerHTML;
+            nowArtist.innerHTML = element.getElementsByTagName('span')[1].innerHTML;
         }
-      }
 
-      // To be completed by Shen Ying
+        // To be completed by Sascha
+        //
+        //
+        // Function to edit song details
+        // Prompts the user for song name and artist
+        // Replaces the clicked song's name and artist with user input
+        // It is called when user clicks on edit icon in the song list
+        function editSongDetails(event, element) {
+            console.log(event);
+            // Hint: Look at console and see how to drill all the way down
+            // to edit the correct list item's song name and artist
+            // after prompting the user for input
+        }
 
-      // This variable keeps track of how the list is sorted - it is sorted by Title by default.
-      // Sort by Title is 0, sort by Artist is 1.
-      let sortBy = 0;
+        // Function to create song item into the #list element
+        function addSongToList(name, artist) {
+            const list = document.getElementById("list");
 
-      // Function to sort the array "data"
-      // Either by song name or artist name
-      // To understand "data" format, look into data.js
-      function sort() {
-          if (sortBy === 0){
-              data.sort(compareArtist);
+            const listItem = document.createElement("div");
+            listItem.setAttribute("class", "list-item");
 
-              sortBy = 1;
-          } else {
-              data.sort(compareTitle);
+            const song = document.createElement("div");
+            song.setAttribute("class", "song");
 
-              sortBy = 0;
-          }
+            const songName = document.createElement("span");
+            const songArtist = document.createElement("span");
+            songName.innerHTML = name;
+            songArtist.innerHTML = artist;
 
-          const list = document.getElementById("list");
+            song.appendChild(songName);
+            song.appendChild(songArtist);
 
-          list.innerHTML = "";
+            const edit = document.createElement("span");
+            edit.setAttribute("class", "fa fa-edit edit");
+            edit.setAttribute("onclick", `editSongDetails(event, this)`);
 
-          populateSongs();
-      }
+            listItem.appendChild(song);
+            listItem.appendChild(edit);
+            //listItem.addEventListener("click", setNowPlaying2(name, artist));
+            listItem.setAttribute("onclick", `setNowPlaying(event, this)`)
 
-      // Comparator to sort by Artist, in alphabetical ascending order.
-      function compareArtist(a, b){
-          const artistA = a.artist.toLowerCase();
-          const artistB = b.artist.toLowerCase();
+            list.appendChild(listItem);
+        }
 
-          if (artistA > artistB) {
-            return 1;
-          } else if (artistA < artistB) {
-            return -1;
-          }
+        // Function to populate the #list using the above addSongToList function
+        // Uses the data from data.js which is imported in this HTML's head
+        // Access the data.js using variable "data"
+        function populateSongs() {
+            for (index in data) {
+                addSongToList(data[index].title, data[index].artist);
+            }
+        }
 
-          return 0;
-      }
+        // To be completed by Shen Ying
 
-      // Comparator to sort by Title, in alphabetical ascending order.
-      function compareTitle(a, b){
-          const titleA = a.title.toLowerCase();
-          const titleB = b.title.toLowerCase();
+        // This variable keeps track of how the list is sorted - it is sorted by Title by default.
+        // Sort by Title is 0, sort by Artist is 1.
+        let sortBy = 0;
 
-          if (titleA > titleB) {
-            return 1;
-          } else if (titleA < titleB) {
-            return -1;
-          }
+        // Function to sort the array "data"
+        // Either by song name or artist name
+        // To understand "data" format, look into data.js
+        function sort() {
+            if (sortBy === 0) {
+                data.sort(compareArtist);
 
-          return 0;
-      }
+                sortBy = 1;
+            } else {
+                data.sort(compareTitle);
 
-      data.sort(compareTitle);
-      populateSongs();
+                sortBy = 0;
+            }
+
+            const list = document.getElementById("list");
+
+            list.innerHTML = "";
+
+            populateSongs();
+        }
+
+        // Comparator to sort by Artist, in alphabetical ascending order.
+        function compareArtist(a, b) {
+            const artistA = a.artist.toLowerCase();
+            const artistB = b.artist.toLowerCase();
+
+            if (artistA > artistB) {
+                return 1;
+            } else if (artistA < artistB) {
+                return -1;
+            }
+
+            return 0;
+        }
+
+        // Comparator to sort by Title, in alphabetical ascending order.
+        function compareTitle(a, b) {
+            const titleA = a.title.toLowerCase();
+            const titleB = b.title.toLowerCase();
+
+            if (titleA > titleB) {
+                return 1;
+            } else if (titleA < titleB) {
+                return -1;
+            }
+
+            return 0;
+        }
+
+        data.sort(compareTitle);
+        populateSongs();
     </script>
-  </body>
+</body>
+
 </html>
