@@ -45,18 +45,19 @@
             nowArtist.innerHTML = element.getElementsByTagName('span')[1].innerHTML;
         }
 
-        // To be completed by Sascha
-        //
-        //
         // Function to edit song details
         // Prompts the user for song name and artist
         // Replaces the clicked song's name and artist with user input
         // It is called when user clicks on edit icon in the song list
         function editSongDetails(event, element) {
-            console.log(event);
-            // Hint: Look at console and see how to drill all the way down
-            // to edit the correct list item's song name and artist
-            // after prompting the user for input
+            // console.log(event);
+        
+            let defaultSongname = event.path[1].childNodes[0].childNodes[0].innerHTML;
+            let newSongname = prompt("New name?", defaultSongname);
+            event.path[1].childNodes[0].childNodes[0].innerHTML = newSongname;
+            let defaultArtistname = event.path[1].childNodes[0].childNodes[1].innerHTML;
+            let newArtistname = prompt("New artist?", defaultArtistname);
+            devent.path[1].childNodes[0].childNodes[1].innerHTML = newArtistname;
         }
 
         // Function to create song item into the #list element
